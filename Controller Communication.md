@@ -36,7 +36,7 @@ function Droid($scope) {
 对象
 ```javascript
 function Sandcrawler($scope) {
-    $scope.obj.location = "Mos Eisley North";
+    $scope.obj = {location:"Mos Eisley North"};
 }
 function Droid($scope) {
     $scope.summon = function(newLocation) {
