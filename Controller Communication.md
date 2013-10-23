@@ -1,4 +1,4 @@
-#控制器之间的通信
+﻿#控制器之间的通信
 
 ***
 
@@ -139,6 +139,33 @@ function Droid($scope) {
         <p>Droid Location: {{status}}</p>
         <button ng-click="recallAddDroids()">Recall All Droids</button>
     </div>
+</div>
+```
+
+##angular服务的方式
+在ng中服务是一个单例，所以在服务中生成一个对象，该对象就可以利用依赖注入的方式在所有的控制器中共享。参照以下例子，在一个控制器修改了服务对象的值，在另一个控制器中获取到修改后的值：
+```javascript
+var app = angular.module('myApp', []);
+app.factory('instance', function(){
+    return {};
+});
+app.controller('MainCtrl', function($scope, instance) {
+  $scope.change = function() {
+       instance.name = $scope.test;
+  };
+});
+app.controller('sideCtrl', function($scope, instance) {
+    $scope.add = function() {
+        $scope.name = instance.name;
+    };
+});
+//html
+<div ng-controller="MainCtrl">
+     <input type="text" ng-model="test" />
+     <div ng-click="change()">click me</div>
+</div>
+<div ng-controller="sideCtrl">
+    <div ng-click="add()">my name {{name}}</div>
 </div>
 ```
 
