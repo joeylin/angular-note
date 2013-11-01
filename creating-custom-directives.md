@@ -49,7 +49,7 @@ Best Practice: 注释的方式通常被用在DOM API限制创建跨越多个元�
 ```javascript
 <a ng-href="img/{{username}}.jpg">Hello {{username}}!</a>
 ```
-####文本和属性的绑定
+####ngAttr属性的绑定
 浏览器有些时候会对它认为合法的属性值非常的挑剔(就是某些元素的属性是不可以任意赋值的，否则会报错)。
 
 比如：
