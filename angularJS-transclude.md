@@ -3,11 +3,10 @@
 ***
 
 Transclude - 在Angular的指令中，大家会看到有一个这样的一个配置属性，这个单词在英文字典里面也查询不到真实的意思，所以就用英文来标示它吧。如果你深入的使用angular的话，你就花很大一部分时间来创建自定义指令，那么就不可避免的要深入理解transclude。简单的讲，transclude主要完成以下工作，取出自定义指令中的内容(就是写在指令里面的子元素)，以正确的作用域解析它,然后再放回指令模板中标记的位置(通常是ng-transclude标记的地方)，虽然使用内建的ngTransclude对于基本的transclude操作已经足够简单，但是在文档中对这个transclude的解释还是有存在很多疑惑，比如说：
-  
-    -在compile函数中接收到了一个叫transclude的参数是什么东西呢？有什么用呢？
-    -在控制器中也有个叫$transclude的可以通过依赖注入的服务，这又是什么呢？
-    -隔离作用域跟transclude有什么关系？
-    -属性的transclude操作
+    *在compile函数中接收到了一个叫transclude的参数是什么东西呢？有什么用呢？
+    *在控制器中也有个叫$transclude的可以通过依赖注入的服务，这又是什么呢？
+    *隔离作用域跟transclude有什么关系？
+    *属性的transclude操作
 
 接下来我们将一个个的解释:
 
@@ -59,10 +58,9 @@ testapp.directive('buttonBar', function() {
 现在我们来增强下我们的buttonBar指令的功能，我们增加了两种按钮，primary和secondary,其中primary按钮是排右边，secondary是排左边。所以要做到这个功能，它必须能够取出指令的内容，然后把它们分别添加到不同的div中，一个用来放primary按钮, 一个用来放secondary按钮。
 
 这样的话，默认的机制已经满足不了我们的要求，于是我们有了另外一种方法：
-
-   -设置transclude为true  
-   -手工移动button元素到合适的div
-   -最后，在指令的编译或链接函数中移除原始的用来transclude操作的元素
+   *设置transclude为true  
+   *手工移动button元素到合适的div
+   *最后，在指令的编译或链接函数中移除原始的用来transclude操作的元素
 
 这种方法就是先把所有的内容插入到<code>ng-transclude</code>标记的元素中，然后在link函数中再找出元素的插入的元素，重新放到元素的其他地方，最后删除原来暂存内容的元素。
 
@@ -273,7 +271,7 @@ testapp.directive('buttonBar', function() {
 
 实际上，你不可以这么做，但是你可以通过一种变通的方法来实现这种效果
 
-<a href="http://jsfiddle.net/ospatil/A969Z/161/">查看完整的说明</a>
+<a href="http://stackoverflow.com/questions/11703086/how-can-i-transclude-into-an-attribute/11704489#11704489">查看完整的说明</a>
 
 ```javascript
 var testapp = angular.module('testapp', [])
