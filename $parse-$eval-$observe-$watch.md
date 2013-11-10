@@ -42,7 +42,7 @@ $observe: function(key, fn) {
 	return fn;
 }
 ```
-从这里可以看出来它是使用了$rootScope.$evalAsync()方法来监控的。什么是$evalAsync呢？是一个异步解析的操作，是在表达式都已经解析之后再解析，这样使它拥有了处理像{{}}插值字符串的机会。
+从这里可以看出来它是使用了$rootScope.$evalAsync()方法来监控的。什么是$evalAsync呢？是一个异步解析的操作，是在其他表达式都已经解析之后再解析，这样使它拥有了处理像{{}}插值字符串的机会。
 
 $observe是属性对象上的方法，因此它是用来监控DOM属性上的值的变化，它仅用在指令内部，当你需要在指令内部监控包含有插值表达式的DOM属性的时候，就要用到这个方法，
 
@@ -60,7 +60,7 @@ $observe和$watch都会在每个digest阶段被执行。
 
 注意到，当link函数被执行的时候，任何包含{{}}的DOM属性都还没被解析，所以此时假如你检查这种方式定义的属性值的话，就是得到undefined, 唯一的方法可以得到{{}}内部的真实值的是使用$observe，或者在包含带有@语法的隔离作用域中使用$watch.因此获取这些属性的值是异步操作(因为要{{}}内部的值是链接到其他地方，所以要等这些值稳定之后，才能得到属性的正确值，而在上文的源码中你可以看到使用了$rootScope.$evalAsync())。
 
-有时候我们并不需要$observe和$watch，比如你的属性一个boolen类型或者数字类型的值，只要解析他们一次就够了,你可以这么做：<code>attr1="22"</code>, 同时你的链接函数: <code>var count = scope.$eval(attrs.attr1)</code>,加入只是包含字符串，<code>attr1="my string"</code>,你就可以直接使用<code>attrs.attr1</code>而不需要用$eval方法。
+有时候我们并不需要$observe和$watch，比如你的属性一个boolen类型或者数字类型的值，只要解析他们一次就够了,你可以这么做：<code>attr1="22"</code>, 同时你的链接函数: <code>var count = scope.$eval(attrs.attr1)</code>,假如只是包含字符串，<code>attr1="my string"</code>,你就可以直接使用<code>attrs.attr1</code>而不需要用$eval方法。
 
 ##使用场景
 
