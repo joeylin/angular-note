@@ -61,7 +61,6 @@ $observe和$watch都会在每个digest阶段被执行。
 ```javascript
 <div foo="fadeOut"></div>
 ```
-
 因为这种情况是直接給定固定字串值，可以直接在 foo directive 中的 link function 直接取出属性值，attrs.foo。
 
 
