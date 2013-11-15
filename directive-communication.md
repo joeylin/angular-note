@@ -44,6 +44,7 @@ require可以用在同一个元素上面，也可以用在父子元素上面，�
 
 ##实例
 指令间的通信
+```javascript
 app.directive("foobar", function() {
   return {
     restrict: "A",
@@ -66,7 +67,10 @@ app.directive("bazqux", function() {
     }
   };
 });
+```
+
 指令配合事件
+```javascript
 app.directive('directiveA', function($rootScope){
     return function(scope, element, attrs){
         $rootScope.$on('someEvent', function(){
@@ -74,5 +78,8 @@ app.directive('directiveA', function($rootScope){
         });
     };
 });
+```
 //html
+```html
 <button ng-click="$emit('someEvent')">Click me!</button>
+```
