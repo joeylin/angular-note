@@ -1,4 +1,4 @@
-#angular中的transclude
+# angular中的transclude
 
 ***
 
@@ -10,7 +10,7 @@ Transclude - 在Angular的指令中，大家会看到有一个这样的一个配
 
 接下来我们将一个个的解释:
 
-##基本的transclude
+## 基本的transclude
 
 我们通过一个基本的transclude例子来讲解吧，我们现在要创建的是一个叫buttonBar的指令，用户可以通过它来添加一组button到页面上，这个指令会对不同的button进行位置的排列。以下例子css样式是使用Bootstrap框架。
 
@@ -263,7 +263,7 @@ testapp.directive('buttonBar', function() {
 同样的意思，$transclude中接收的函数里的参数含有指令元素的内容，而$element包含编译后的DOM元素，所以就可以在控制器中同时操作DOM元素和指令内容，跟上文的compile函数的实现方式有异曲同工之处，这里有几点需要注意，这个控制器应该是指令的控制器，另一个注意到上文除了第一种方法，其他的地方都没有用到
 <code>ng-transclude</code>，因为无需插入到模板中。
 
-##Transclude 和 scope
+## Transclude 和 scope
 
 在开发者指南中提到了<code>a directive isolated scope and transclude scope are siblings</code>,这到底是什么意思呢？假如你认真看前文的例子的话，你就会发现parentController控制器创建了一个作用域，buttonBar指令在parentController下面创建了一个孤立作用域，而根据Angular文档，transclude也创建了另外一个作用域，因此指令的隔离作用域跟transclude作用域是基于同一个父作用域的兄弟作用域。
 
